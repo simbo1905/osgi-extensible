@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-Name: RuleOneService
+Bundle-Activator: com.github.simbo1905.rule1.ServiceActivator
+Bundle-SymbolicName: RuleOneService
+Bundle-Version: 1.0.0
+Import-Package: org.osgi.framework,com.github.simbo1905.osgi
+Export-Package: com.github.simbo1905.rule1
