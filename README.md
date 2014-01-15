@@ -37,12 +37,12 @@ Use Ctrl+c to kill the app.
 
 ##Anatomy
 
-- The main application ExtendableApplication loads the OSGi framework and exports the core package com.github.simbo1905.osgi via the system bundle
-- The package com.github.simbo1905.osgi contains the service interface RulesService along with the RulesInput and RulesOutput
-- The two plug-in modules build jars with a MANIFEST.FM which contains:
-  - Import-Package which names the core com.github.simbo1905.osgi package
-  - Bundle-Activator which names an activator class which knows how to instantiate and register the concrete RulesService implementations
+- The main application ```ExtendableApplication``` loads the OSGi framework and exports the core package ```com.github.simbo1905.osgi``` via the system bundle
+- The package ```com.github.simbo1905.osgi``` contains the service interface ```RulesService``` along with the ```RulesInput``` and ```RulesOutput```
+- The two plug-in modules build jars with a ```MANIFEST.FM``` which contains:
+  - ```Import-Package``` which names the core ```com.github.simbo1905.osgi``` package
+  - ```Bundle-Activator``` which names an activator class which knows how to instantiate and register the concrete ```RulesService``` implementations
 - The main application then simply dynamically loads the modules and starts then then looks up the registered services and invokes them
 - The two modules have identically named but binary incompatible classes yet are run in separated classloaders with only the core package types shared between the host application and each module
 
-End.   
+End.
