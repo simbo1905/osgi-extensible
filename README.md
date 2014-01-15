@@ -5,6 +5,8 @@ A demo of dynamically loading rules plugins into an app via an embedded OSGi con
 
 The code to embed bundles was taken from [How To Embed OSGi by Neil Bartlett](http://njbartlett.name/2011/03/07/embedding-osgi.html)
 
+The key point is that the two plugins loaded by the app have an identically named class MagicNumber which is binary incompatible. This represents evolutions to the business logic over time. OSGi runs these classes in separate class loaders such that they don't interfere with each other.  
+
 Build and run it with: 
 
 ```sh
