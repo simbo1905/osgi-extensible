@@ -5,9 +5,10 @@ A demo of dynamically loading rules plugins into an app via an embedded OSGi con
 
 The code to embed bundles was taken from [How To Embed OSGi by Neil Bartlett](http://njbartlett.name/2011/03/07/embedding-osgi.html)
 
-The key point is that the two plugins loaded by the app have an identically named class MagicNumber which is binary incompatible. This represents evolutions to the business logic over time. OSGi runs these classes in separate class loaders such that they don't interfere with each other.  
+The key point is that the two plug-ins loaded by the app have an identically named class MagicNumber which is binary incompatible. This represents evolutions to the business logic over time. OSGi runs these classes in separate class loaders such that they don't interfere with each other.  
 
-Build and run it with: 
+
+##Building And Running 
 
 ```sh
 # Build the core app classes used by the plugins
@@ -33,3 +34,15 @@ awaiting stop
 ```
 
 Use Ctrl+c to kill the app. 
+
+##Anatomy
+
+- The main application ExtendableApplication loads the OSGi framework and exports the core package com.github.simbo1905.osgi via the system bundle
+- The package com.github.simbo1905.osgi contains the service interface RulesService along with the RulesInput and RulesOutput
+- The two plug-in modules build jars with a MANIFEST.FM which contains:
+  - Import-Package which names the core com.github.simbo1905.osgi package
+  - Bundle-Activator which names an activator class which knows how to instantiate and register the concrete RulesService implementations
+- The main application then simply dynamically loads the modules and starts then then looks up the registered services and invokes them
+- The two modules have identically named but binary incompatible classes yet are run in separated classloaders with only the core package types shared between the host application and each module
+
+End.   
