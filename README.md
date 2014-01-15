@@ -42,8 +42,8 @@ Use Ctrl+c to kill the app.
 - The two plug-in modules build jars with a ```MANIFEST.FM``` which contains:
   - ```Import-Package``` which names the core ```com.github.simbo1905.osgi``` package
   - ```Bundle-Activator``` which names an specific activator class which knows how to instantiate and register the two specific ```RulesService``` implementations
-  - Two different ```MagicNumber``` classes with the same name and package but which are binary incompatible with each other used to generate the 'hello world' style output  
+- The two plug-in modules contain two different ```MagicNumber``` classes with the same name and package but which are binary incompatible with each other   
 - The main application then simply dynamically loads the modules and starts then then looks up the registered services and invokes them
-- The two modules have identically named but binary incompatible classes yet are run in separated classloaders with only the core package types shared between the host application and each module
+- The output shows that the two different rules in the two differnt modules are dynamically loaded and run in isolated classloaders
 
 End.
